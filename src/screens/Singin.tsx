@@ -3,13 +3,22 @@ import BkgImage from "@assets/background.png";
 import LogoSvg from '@assets/logo.svg'
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
+import { useNavigation } from "@react-navigation/native";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 export function Singin() {
+
+const navigate = useNavigation<AuthNavigatorRoutesProps>();
+
     return (
-      <ScrollView contentContainerStyle={{flexGrow:1}} showsVerticalScrollIndicator={false}>
-        <VStack flex={1} bg="gray.700" paddingX={8} paddingBottom={'16'}>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <VStack flex={1} paddingX={8} paddingBottom={"16"}>
           <Image
             source={BkgImage}
+            defaultSource={BkgImage}
             alt="pessoas treinando"
             resizeMode="contain"
             position={"absolute"}
@@ -36,7 +45,11 @@ export function Singin() {
             <Text color={"gray.100"} fontFamily={"body"} fontSize={"sm"} mb={3}>
               Ainda não tem uma conta ?
             </Text>
-            <Button title="Criar conta" variant={"outline"} />
+            <Button
+              title="Criar conta"
+              variant={"outline"}
+              onPress={() => navigate.navigate("singUp")}
+            />
           </Center>
         </VStack>
       </ScrollView>

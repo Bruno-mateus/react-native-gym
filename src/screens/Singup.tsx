@@ -3,16 +3,19 @@ import BkgImage from "@assets/background.png";
 import LogoSvg from '@assets/logo.svg'
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export function Singup() {
+    const navigate = useNavigation()
     return (
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
         showsVerticalScrollIndicator={false}
       >
-        <VStack flex={1} bg="gray.700" paddingX={8} paddingBottom={"16"}>
+        <VStack flex={1} paddingX={8} paddingBottom={"16"}>
           <Image
             source={BkgImage}
+            defaultSource={BkgImage}
             alt="pessoas treinando"
             resizeMode="contain"
             position={"absolute"}
@@ -37,7 +40,12 @@ export function Singup() {
             <Input placeholder="Confirmar senha" secureTextEntry />
             <Button title="Criar e acessar" />
           </Center>
-          <Button mt="20" title="Voltar para o login" variant={"outline"} />
+          <Button
+            mt="20"
+            title="Voltar para o login"
+            variant={"outline"}
+            onPress={() => navigate.goBack()}
+          />
         </VStack>
       </ScrollView>
     );
